@@ -1,1002 +1,217 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImageEnhancer Pro | Free Online Photo Quality Enhancer</title>
-    <meta name="description" content="Enhance your photos for free with our AI-powered image enhancer tool. Improve quality, sharpen details, and enhance colors instantly.">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Image Enhancer Tool</title>
+    <title>Free Online Image Enhancer Tool</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            text-align: center;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
         }
         
         .header {
-            background-color: #4285f4;
+            background: linear-gradient(135deg, #4285f4, #34a853);
             color: white;
-            padding: 20px 0;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
-        h1 {
-            color: #4285f4;
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
         }
         
         .btn {
-            background-color: #4285f4;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 20px 0;
             display: inline-block;
+            background-color: #ff6b00;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: bold;
+            margin: 1rem 0;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,107,0,0.3);
+            transition: all 0.3s ease;
         }
         
         .btn:hover {
-            background-color: #3367d6;
+            background-color: #e55d00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,107,0,0.4);
+        }
+        
+        .main-content {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #4285f4;
         }
         
         .features {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
+            gap: 2rem;
+            margin: 3rem 0;
         }
         
-        .feature {
+        .feature-card {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 200px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #4285f4;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
         }
         
         .hidden {
             display: none;
         }
         
-        .image-preview {
-            max-width: 100%;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="container">
-            <h1>Image Enhancer Pro</h1>
-            <p>Enhance your photos in one click - 100% FREE!</p>
-        </div>
-    </div>
-    
-    <div class="container">
-        <h2>Transform Your Photos Instantly</h2>
-        <p>Get sharper, clearer, and more vibrant images with our AI-powered enhancer</p>
-        
-        <a href="#" class="btn" id="enhanceBtn">Enhance Image Now</a>
-        <input type="file" id="fileInput" accept="image/*" class="hidden">
-        
-        <div id="imageContainer" class="hidden">
-            <h3>Your Enhanced Image</h3>
-            <img id="enhancedImage" class="image-preview" alt="Enhanced result">
-            <a href="#" class="btn" id="downloadBtn">Download Enhanced Image</a>
-        </div>
-        
-        <div class="features">
-            <div class="feature">
-                <h3>✔️ Easy to Use</h3>
-                <p>Just select your photo and let our AI do the work</p>
-            </div>
-            <div class="feature">
-                <h3>⚡ Fast Processing</h3>
-                <p>Get results in seconds</p>
-            </div>
-            <div class="feature">
-                <h3>🔒 Privacy Safe</h3>
-                <p>We don't store your images</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Get all the elements we need
-        const enhanceBtn = document.getElementById('enhanceBtn');
-        const fileInput = document.getElementById('fileInput');
-        const imageContainer = document.getElementById('imageContainer');
-        const enhancedImage = document.getElementById('enhancedImage');
-        const downloadBtn = document.getElementById('downloadBtn');
-        
-        // When "Enhance Image Now" is clicked
-        enhanceBtn.addEventListener('click', function() {
-            // Open the device's gallery
-            fileInput.click();
-        });
-        
-        // When an image is selected from gallery
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    // Show the enhanced image (in a real app, you would process it here)
-                    enhancedImage.src = e.target.result;
-                    imageContainer.classList.remove('hidden');
-                    
-                    // Scroll to the result
-                    imageContainer.scrollIntoView({ behavior: 'smooth' });
-                }
-                
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        // Download button functionality
-        downloadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (enhancedImage.src) {
-                const link = document.createElement('a');
-                link.href = enhancedImage.src;
-                link.download = 'enhanced-image.jpg';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        });
-    </script>
-</body>
-</html>
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --border-radius: 12px;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 15px 0;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            font-size: 28px;
-            color: var(--primary);
-            margin-right: 10px;
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .logo-text span {
-            color: var(--primary);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 25px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--dark);
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 300px;
-            height: 300px;
-            background-color: rgba(67, 97, 238, 0.1);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(67, 97, 238, 0.1);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-text {
-            flex: 1;
-            padding-right: 40px;
-        }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: var(--transition);
-        }
-
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-
-        .free-badge {
-            display: inline-block;
-            background-color: var(--accent);
+        .footer {
+            background-color: #333;
             color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 6px rgba(247, 37, 133, 0.2);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
-        }
-
-        .btn:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px rgba(67, 97, 238, 0.3);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            margin-left: 15px;
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background-color: white;
-        }
-
-        .section-header {
+            padding: 2rem 0;
             text-align: center;
-            margin-bottom: 50px;
+            margin-top: 3rem;
         }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: var(--light);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            transition: var(--transition);
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(67, 97, 238, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: var(--primary);
-            font-size: 30px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            padding: 80px 0;
-            background-color: var(--light-gray);
-        }
-
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .step {
-            display: flex;
-            align-items: flex-start;
-            background-color: white;
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .step-number {
-            background-color: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
-
-        .step-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .step-content p {
-            color: var(--gray);
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .cta p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .cta .btn {
-            background-color: white;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .cta .btn:hover {
-            background-color: var(--light);
-            color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-column ul li a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content {
-                flex-direction: column;
-            }
-            
-            .hero-text {
-                padding-right: 0;
-                margin-bottom: 40px;
-                text-align: center;
-            }
-            
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .hero-image {
-                max-width: 600px;
-                margin: 0 auto;
-            }
-        }
-
+        
         @media (max-width: 768px) {
-            nav {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: var(--shadow);
-                padding: 20px;
-                transform: translateY(-150%);
-                transition: var(--transition);
-                z-index: 99;
-            }
-            
-            nav.active {
-                transform: translateY(0);
-            }
-            
-            nav ul {
-                flex-direction: column;
-            }
-            
-            nav ul li {
-                margin: 0 0 15px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero {
-                padding: 60px 0;
-            }
-            
-            .features, .how-it-works, .cta {
-                padding: 60px 0;
-            }
-            
-            .section-header h2 {
+            .logo {
                 font-size: 2rem;
             }
             
-            .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .step {
-                flex-direction: column;
-            }
-            
-            .step-number {
-                margin-bottom: 15px;
-                margin-right: 0;
+            h1 {
+                font-size: 2rem;
             }
             
             .feature-card {
-                padding: 20px;
+                width: 100%;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <i class="fas fa-magic logo-icon"></i>
-                <span class="logo-text">Image<span>Enhancer</span></span>
-            </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
+    <header class="header">
+        <div class="container">
+            <div class="logo">ImageEnhancer Pro</div>
+            <div class="tagline">Transform your photos with AI magic - 100% FREE!</div>
+            <button class="btn" id="enhanceBtn">
+                <i class="fas fa-magic"></i> Enhance Image Now
             </button>
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <input type="file" id="fileInput" accept="image/*" class="hidden">
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
+    
+    <div class="main-content">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <span class="free-badge">100% FREE FOREVER</span>
-                    <h1>Transform Your <span>Photos</span> With AI-Powered Enhancement</h1>
-                    <p>Instantly improve image quality, sharpen details, and enhance colors with our advanced photo enhancer tool. No registration required.</p>
-                    <div class="btn-group">
-                        <a href="#" class="btn">Enhance Your Images Now</a>
-                        <a href="#how-it-works" class="btn btn-outline">Learn How It Works</a>
+            <h1>How It Works</h1>
+            <p>Enhance your images in just 3 simple steps</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
                     </div>
+                    <h3 class="feature-title">1. Select Image</h3>
+                    <p>Choose any photo from your device's gallery</p>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1682686580391-615b3f4e56a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Before and after image enhancement example">
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="feature-title">2. Automatic Enhancement</h3>
+                    <p>Our AI will instantly improve your image quality</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="feature-title">3. Download Result</h3>
+                    <p>Save your enhanced image with one click</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
+    </div>
+    
+    <footer class="footer">
         <div class="container">
-            <div class="section-header">
-                <h2>Why Choose Our Image Enhancer</h2>
-                <p>Discover the powerful features that make our tool stand out from the competition</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Enhance your images in seconds with our optimized AI algorithms that work at incredible speed.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-sliders-h"></i>
-                    </div>
-                    <h3>Precise Control</h3>
-                    <p>Adjust enhancement levels with our intuitive sliders to get exactly the results you want.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3>Secure Processing</h3>
-                    <p>Your images are never stored permanently and are processed securely with encryption.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tag"></i>
-                    </div>
-                    <h3>Completely Free</h3>
-                    <p>No hidden charges, no watermarks, no limitations. Enhance as many images as you want.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Works perfectly on all devices including smartphones, tablets, and desktop computers.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <h3>Easy Upload</h3>
-                    <p>Simply drag and drop your images or click to browse. Supports JPG, PNG, and other formats.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>How To Enhance Your Images</h2>
-                <p>Follow these simple steps to transform your photos in seconds</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Upload Your Image</h3>
-                        <p>Click the upload button or simply drag and drop your image file into the designated area. We support all common image formats.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Adjust Settings</h3>
-                        <p>Use our intuitive controls to fine-tune the enhancement level, sharpness, brightness, and other parameters.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Enhance & Download</h3>
-                        <p>Click the enhance button and watch as our AI improves your image. Download the enhanced version with one click.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Transform Your Images?</h2>
-            <p>Join thousands of users who enhance their photos with our free tool every day. No registration required.</p>
-            <a href="#" class="btn">Start Enhancing Now</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>ImageEnhancer</h3>
-                    <p>Making your images look their best with advanced AI technology. Completely free for everyone.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> support@imageenhancer.com</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, San Francisco, CA</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; <span id="currentYear"></span> ImageEnhancer. All rights reserved.</p>
-            </div>
+            <p>&copy; 2023 ImageEnhancer Pro. All rights reserved.</p>
+            <p>Free to use - No watermarks - No registration required</p>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
+        // When "Enhance Image Now" button is clicked
+        document.getElementById('enhanceBtn').addEventListener('click', function() {
+            // Open the device's gallery/file picker
+            document.getElementById('fileInput').click();
         });
         
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mainNav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        // When an image is selected from gallery
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // In a real app, you would process the image here
+                // For now, we'll just show an alert
+                alert("Image selected! In a complete app, this would redirect to the enhancer tool.");
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
+                // To actually enhance the image, you would:
+                // 1. Upload the image to your server
+                // 2. Process it with your enhancement algorithm
+                // 3. Show the enhanced result to the user
+            }
         });
-        
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Animation on scroll
-        window.addEventListener('scroll', function() {
-            const elements = document.querySelectorAll('.feature-card, .step');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        });
-        
-        // Initialize elements with animation properties
-        document.querySelectorAll('.feature-card, .step').forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-        
-        // Trigger initial animation
-        window.dispatchEvent(new Event('scroll'));
     </script>
 </body>
 </html>
